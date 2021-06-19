@@ -5,7 +5,7 @@
   "main": "maint.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx tsc main.ts && node main.js"
+    "start": "npx ts-node src/main.ts"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,9 @@
   "homepage": "https://github.com/ythepaut/mcarcades-discord-bot#readme",
   "devDependencies": {
     "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "@typeit/discord": "^4.0.10",
+    "tslib": "^2.3.0"
   }
 }
