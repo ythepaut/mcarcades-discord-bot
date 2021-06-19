@@ -1,0 +1,23 @@
+{
+  "name": "mcarcades-discord-bot",
+  "version": "1.0.0",
+  "description": "McArcades Discord Bot",
+  "main": "maint.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx tsc main.ts && node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ythepaut/mcarcades-discord-bot.git"
+  },
+  "author": "Yohann THEPAUT <contact@ythepaut.com> (ythepaut)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ythepaut/mcarcades-discord-bot/issues"
+  },
+  "homepage": "https://github.com/ythepaut/mcarcades-discord-bot#readme",
+  "devDependencies": {
+    "typescript": "^4.3.4"
+  }
+}
