@@ -1,5 +1,5 @@
 import {ArgsOf, On} from "@typeit/discord";
-import getClient from "../main"
+import getClient from "../main";
 import config from "../config.json";
 import {User} from "discord.js";
 import {createCanvas, loadImage} from "canvas";
@@ -81,6 +81,6 @@ export abstract class Welcome {
         await channel.send("", {files: [await Welcome.createWelcomeImage(member.user)]});
 
         if (config.VERBOSE_LEVEL >= 3)
-            console.info(`User ${member.user.tag} just joined the guild.`);
+            console.info(`User ${member.user.tag} joined the guild.`);
     }
 }

@@ -7,6 +7,6 @@ export abstract class Goodbye {
     private async processEvent([member]: ArgsOf<"guildMemberRemove">) {
         if (member.user === null) return;
         if (config.VERBOSE_LEVEL >= 3)
-            console.info(`User ${member.user.tag} just left the guild.`);
+            console.info(`User ${member.user.tag} left the guild.`);
     }
 }

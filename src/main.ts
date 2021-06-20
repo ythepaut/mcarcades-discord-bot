@@ -16,9 +16,9 @@ async function start() {
 
 start().then(() => {
     if (config.VERBOSE_LEVEL >= 2)
-        console.info(`Bot started at ${new Date()}.`);
+        console.info(`Bot started on ${new Date()}.`);
 });
 
 export default function () {
     return client;
-};
+}

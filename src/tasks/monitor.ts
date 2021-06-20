@@ -22,7 +22,7 @@ export class Monitor extends Task {
 
     private static instance: Monitor;
 
-    private readonly interval: number = 180;
+    private readonly interval: number = 150;
     private offlineTime: number = 0;
     private lastMessage: Message | null = null;
     private lastStatus: ServerStatus | null = null;
@@ -75,10 +75,10 @@ export class Monitor extends Task {
         }
 
         if (this.lastMessage && Date.now() - (this.lastMessage.editedTimestamp || this.lastMessage.createdTimestamp) < 3 * this.interval * 1000) {
-            const lastEmbled = this.lastMessage?.embeds[0]
-            if (lastEmbled && lastEmbled.title === title) {
-                lastEmbled.setDescription(description);
-                await this.lastMessage.edit(lastEmbled);
+            const lastEmbed = this.lastMessage?.embeds[0];
+            if (lastEmbed && lastEmbed.title === title) {
+                lastEmbed.setDescription(description);
+                await this.lastMessage.edit(lastEmbed);
             } else {
                 this.lastMessage = await channel.send(new MessageEmbed()
                     .setColor(colours[severity])
