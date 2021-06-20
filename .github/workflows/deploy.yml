@@ -20,5 +20,6 @@ jobs:
             sudo su
             cd ~/node-servers/mcarcades-discord-bot
             git pull origin master
+            npm install
             sudo su
             sudo pm2 restart mcarcades-discord-bot
