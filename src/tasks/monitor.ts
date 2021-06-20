@@ -22,7 +22,7 @@ export class Monitor extends Task {
 
     private static instance: Monitor;
 
-    private readonly interval: number = 10;
+    private readonly interval: number = 180;
     private offlineTime: number = 0;
     private lastMessage: Message | null = null;
     private lastStatus: ServerStatus | null = null;

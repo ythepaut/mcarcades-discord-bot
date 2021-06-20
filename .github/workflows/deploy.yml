@@ -1,0 +1,24 @@
+name: Deployment
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    name: Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USERNAME }}
+          key: ${{ secrets.PROD_KEY }}
+          passphrase: ${{ secrets.PROD_PASSPHRASE }}
+          port: ${{ secrets.PROD_PORT }}
+          script: |
+            sudo su
+            cd ~/node-servers/mcarcades-discord-bot
+            git pull origin master
+            sudo su
+            sudo pm2 restart mcarcades-discord-bot
