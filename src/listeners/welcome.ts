@@ -23,13 +23,17 @@ export abstract class Welcome {
         ctx.drawImage(background, 0, 0, width, height);
 
         // Adding title
+        ctx.shadowColor = "#000";
+        ctx.shadowBlur = 8;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
         ctx.font = "bold 48pt Lato";
         ctx.textAlign = "center";
         ctx.fillStyle = "#fff";
         ctx.fillText("BIENVENUE", width / 2, 0.8 * height);
 
         // Adding subtitle
-        ctx.font = "bold 24pt Lato";
+        ctx.font = "bold 26pt Lato";
         ctx.textAlign = "center";
         ctx.fillStyle = "#fff";
         ctx.fillText(member.tag, width / 2, 0.88 * height);
