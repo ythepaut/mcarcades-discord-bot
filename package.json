@@ -22,6 +22,9 @@
   },
   "dependencies": {
     "@typeit/discord": "^4.0.10",
+    "canvas": "^2.8.0",
+    "discord.js": "^12.5.3",
+    "fs": "^0.0.1-security",
     "tslib": "^2.3.0"
   }
 }

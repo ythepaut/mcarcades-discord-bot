@@ -1,8 +1,10 @@
-import { Client } from "@typeit/discord";
+import {Client} from "@typeit/discord";
 import config from "./config.json";
 
+let client: Client;
+
 async function start() {
-    const client = new Client({
+    client = new Client({
         classes: [
             `${__dirname}/../src/DiscordApp.ts`
         ],
@@ -13,5 +15,10 @@ async function start() {
 }
 
 start().then(() => {
-    console.info("Bot started.");
+    if (config.VERBOSE_LEVEL >= 2)
+        console.info(`Bot started at ${new Date()}.`);
 });
+
+export default function () {
+    return client;
+};

@@ -1,10 +1,11 @@
-import {Command, CommandMessage} from "@typeit/discord";
+import {Command, CommandMessage, Guard} from "@typeit/discord";
+import {NotBot} from "../guards/NotBot";
 
 export abstract class Ping {
 
     @Command("ping")
-    private processCommand(message: CommandMessage) {
-        if (message.author.bot) return;
-        message.reply("Pong !").then();
+    @Guard(NotBot)
+    private async processCommand(command: CommandMessage) {
+        await command.reply("Pong !");
     }
 }

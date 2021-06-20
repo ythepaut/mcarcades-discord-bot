@@ -1,16 +1,20 @@
 import * as Path from "path";
-import {CommandMessage, CommandNotFound, Discord} from "@typeit/discord";
+import {Command, CommandMessage, Discord, Guard} from "@typeit/discord";
+import config from "./config.json";
+import {NotBot} from "./guards/NotBot";
 
-@Discord("!", {
+@Discord(config.COMMAND_PREFIX, {
     import: [
-        Path.join(__dirname,  "commands", "*.ts"),
-        Path.join(__dirname,  "listeners", "*.ts")
+        Path.join(__dirname, "commands", "*.ts"),
+        Path.join(__dirname, "listeners", "*.ts")
     ]
 })
 export abstract class DiscordApp {
-    @CommandNotFound()
+
+    @Command(/.*/)
+    @Guard(NotBot)
     private processCommand(message: CommandMessage) {
-        if (message.author.bot) return;
-        message.reply("Commande non reconnue.").then();
+        if (config.VERBOSE_LEVEL >= 3)
+            console.info(`${message.author.tag} executed the command ${message.content}`);
     }
 }

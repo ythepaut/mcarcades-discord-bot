@@ -1,3 +1,11 @@
 {
-    "BOT_TOKEN": ""
+    "VERBOSE_LEVEL": 2,
+    "COMMAND_PREFIX": "!",
+
+    "BOT_TOKEN": "REPLACE ME",
+
+    "GUILD": "REPLACE ME",
+    "CHANNELS": {
+        "WELCOME": "REPLACE ME"
+    }
 }
