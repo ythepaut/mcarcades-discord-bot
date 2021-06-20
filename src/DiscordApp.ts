@@ -1,12 +1,13 @@
 import * as Path from "path";
-import {Command, CommandMessage, Discord, Guard} from "@typeit/discord";
+import {Command, CommandMessage, Discord, Guard, Once} from "@typeit/discord";
 import config from "./config.json";
 import {NotBot} from "./guards/NotBot";
 
 @Discord(config.COMMAND_PREFIX, {
     import: [
         Path.join(__dirname, "commands", "*.ts"),
-        Path.join(__dirname, "listeners", "*.ts")
+        Path.join(__dirname, "listeners", "*.ts"),
+        Path.join(__dirname, "tasks", "*.ts")
     ]
 })
 export abstract class DiscordApp {
