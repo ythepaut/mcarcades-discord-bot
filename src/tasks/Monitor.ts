@@ -22,7 +22,7 @@ export class Monitor extends Task {
 
     private static instance: Monitor;
 
-    private readonly interval: number = 150;
+    private readonly interval: number = -1;
     private offlineTime: number = 0;
     private lastMessage: Message | null = null;
     private lastStatus: ServerStatus | null = null;
@@ -31,8 +31,9 @@ export class Monitor extends Task {
         super();
         if (!Monitor.instance) {
             Monitor.instance = this;
-            this.interval = interval ? interval : this.interval;
-            setInterval(() => this.tick(), this.interval * 1000);
+            this.interval = interval ? interval : +config.SERVER_MONITOR_API;
+            if (interval > 0)
+                setInterval(() => this.tick(), this.interval * 1000);
         }
     }
 
