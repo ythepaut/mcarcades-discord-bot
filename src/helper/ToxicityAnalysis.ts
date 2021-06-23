@@ -1,26 +1,46 @@
 import config from "../config.json";
 
-async function getToxicity(content: String): Promise<number> {
+const attributes = [
+    "TOXICITY",
+    "SEVERE_TOXICITY",
+    "IDENTITY_ATTACK_EXPERIMENTAL",
+    "INSULT_EXPERIMENTAL",
+    "PROFANITY_EXPERIMENTAL",
+    "THREAT_EXPERIMENTAL"
+];
 
-    const Perspective = require('perspective-api-client');
+async function getToxicity(content: String): Promise<object> {
+
+    const Perspective = require("perspective-api-client");
     const perspective = new Perspective({
         apiKey: config.PERSPECTIVE_API_TOKEN
     });
 
-    let result = null;
+    let rawResult = null;
 
     try {
-        result = await perspective.analyze(
+        rawResult = await perspective.analyze(
             content,
             {
-                attributes: ["toxicity"],
-                doNotStore: true
+                attributes: attributes,
+                doNotStore: true,
+                languages: ["fr"]
             }
         );
-    } catch (_) {
+    } catch (err) {
+        if (config.VERBOSE_LEVEL >= 4)
+            console.error(err);
     }
 
-    return result ? result.attributeScores.TOXICITY.summaryScore.value : -1;
+
+    if (rawResult === null) {
+        return [];
+    } else {
+        let result: any = {};
+        for (const attribute of attributes)
+            result[attribute] = rawResult.attributeScores[attribute].summaryScore.value;
+        return result;
+    }
 }
 
 export default getToxicity;

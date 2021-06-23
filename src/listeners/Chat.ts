@@ -17,15 +17,27 @@ export abstract class Chat {
             console.info(`${new Date()} | ${message.author.tag} : ${message.content}`);
 
         if (config.SERVER_MONITOR_API !== "") {
-            const result = await getToxicity(message.content);
+            const toxicityLevels: any = await getToxicity(message.content);
 
-            if (result >= 0.9) {
+            let severityScore = 0;
+            let toxicityDetails = [];
+            for (const attribute in toxicityLevels) {
+                if (toxicityLevels.hasOwnProperty(attribute)) {
+                    if (toxicityLevels[attribute] >= 0.5)
+                        toxicityDetails.push(`${attribute.replace("_EXPERIMENTAL", "")}=${Math.round(toxicityLevels[attribute] * 100)}%`);
+                    if (toxicityLevels[attribute] > severityScore)
+                        severityScore = toxicityLevels[attribute];
+                }
+            }
+
+            if (severityScore >= 0.9) {
                 await message.delete();
                 await StaffAlert.triggerAlert(
                     config.ROLES.MODERATOR,
                     "Message modéré",
-                    `Le message de ${message.author.tag} a été supprimé automatiquement pour toxicité (${result * 100}%).
-                    *${message.content}*`,
+                    `Le message de ${message.author.tag} a été supprimé pour toxicité.
+                    "*${message.content}*"\n
+                    ${toxicityDetails.join(", ")}`,
                     Severity.MEDIUM);
 
                 // TODO Better warning system
@@ -39,13 +51,14 @@ export abstract class Chat {
                     `)
                     .setFooter("S'il s'agit d'une erreur, merci de contacter un administrateur.")
                 );
-            } else if (result >= 0.5) {
+            } else if (severityScore >= 0.5) {
                 await StaffAlert.triggerAlert(
                     config.ROLES.MODERATOR,
                     "Message suspect",
-                    `Le message de ${message.author.tag} semble toxique (${result * 100}%).
-                    *${message.content}*\n
-                    ${message.url}`,
+                    `Le message de ${message.author.tag} semble toxique.
+                    "*${message.content}*"\n
+                    ${message.url}\n
+                    ${toxicityDetails.join(", ")}`,
                     Severity.HIGH);
             }
         }
