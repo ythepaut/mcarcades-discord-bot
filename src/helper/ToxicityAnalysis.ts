@@ -1,10 +1,5 @@
 import config from "../config.json";
 
-interface ToxicityAttribute {
-    name: string;
-    value: number;
-}
-
 const attributes = [
     "TOXICITY",
     "SEVERE_TOXICITY",
