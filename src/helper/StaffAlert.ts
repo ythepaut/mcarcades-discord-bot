@@ -15,7 +15,7 @@ export abstract class StaffAlert {
 
     private static lastMessage: Message | null = null;
 
-    public static async triggerAlert(targetGroupId: string | null, title: string, message: string, severity: Severity): Promise<void> {
+    public static async triggerAlert(targetGroupId: string | null, title: string, message: string, severity: Severity, replace: boolean): Promise<void> {
 
         const client = getClient();
         if (!client) return;
@@ -33,7 +33,7 @@ export abstract class StaffAlert {
             description += `\n\n<@&${targetGroupId}>`;
         }
 
-        if (this.lastMessage && Date.now() - (this.lastMessage.editedTimestamp || this.lastMessage.createdTimestamp) < 300000) {
+        if (replace && this.lastMessage && Date.now() - (this.lastMessage.editedTimestamp || this.lastMessage.createdTimestamp) < 300000) {
             const lastEmbed = this.lastMessage?.embeds[0];
             if (lastEmbed && lastEmbed.title === title) {
                 lastEmbed.setDescription(description);

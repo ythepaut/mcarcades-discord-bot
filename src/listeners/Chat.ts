@@ -38,7 +38,8 @@ export abstract class Chat {
                     `Le message de ${message.author.tag} a été supprimé pour toxicité.
                     "*${message.content}*"\n
                     ${toxicityDetails.join(", ")}`,
-                    Severity.MEDIUM);
+                    Severity.MEDIUM,
+                    false);
 
                 // TODO Better warning system
                 const dm = await message.author.createDM();
@@ -59,7 +60,8 @@ export abstract class Chat {
                     "*${message.content}*"\n
                     ${message.url}\n
                     ${toxicityDetails.join(", ")}`,
-                    Severity.HIGH);
+                    Severity.HIGH,
+                    false);
             }
         }
     }
