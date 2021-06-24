@@ -61,7 +61,8 @@ export class Monitor extends Task {
                     config.ROLES.ADMINISTRATOR,
                     "Serveur hors-ligne",
                     `Serveur hors-ligne depuis **${this.offlineTime / 60} minutes**`,
-                    Severity.HIGHEST
+                    Severity.HIGHEST,
+                    true
                 );
             }
 
@@ -73,7 +74,8 @@ export class Monitor extends Task {
                     null,
                     "Serveur de nouveau en ligne",
                     `Il a été inaccessible durant **${this.offlineTime / 60} minutes**`,
-                    Severity.LOW
+                    Severity.LOW,
+                    true
                 );
             }
             this.offlineTime = 0;
