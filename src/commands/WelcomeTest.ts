@@ -1,5 +1,7 @@
 import {Command, CommandMessage, Guard} from "@typeit/discord";
 import {NotBot} from "../guards/NotBot";
+import {ConfigGuild} from "../guards/ConfigGuild";
+import {HasRoles} from "../guards/HasRoles";
 import getClient from "../main";
 import config from "../config.json";
 import {Welcome} from "../listeners/Welcome";
@@ -8,6 +10,8 @@ export abstract class WelcomeTest {
 
     @Command("testwelcome")
     @Guard(NotBot)
+    @Guard(HasRoles([config.ROLES.ADMINISTRATOR]))
+    @Guard(ConfigGuild)
     private async processCommand(command: CommandMessage) {
 
         const client = getClient();
