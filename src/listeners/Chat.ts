@@ -13,8 +13,6 @@ export abstract class Chat {
     @Guard(NotBot)
     private async processEvent([message]: ArgsOf<"message">) {
 
-        if (config.VERBOSE_LEVEL >= 3)
-            console.info(`${new Date()} | ${message.author.tag} : ${message.content}`);
 
         if (config.SERVER_MONITOR_API !== "") {
             const toxicityLevels: any = await getToxicity(message.content);
@@ -63,6 +61,16 @@ export abstract class Chat {
                     Severity.HIGH,
                     false);
             }
+
+            if (config.VERBOSE_LEVEL >= 3) {
+                console.info(`${new Date().toLocaleDateString("fr-FR")} ${new Date().toLocaleTimeString("fr-FR")} | ${message.author.tag} : ${message.content}\n` +
+                    `    └ Toxicity analysis result : ${toxicityDetails.length > 0 ? toxicityDetails.join(", ") : "None"}`);
+            }
+
+        } else {
+            if (config.VERBOSE_LEVEL >= 3)
+                console.info(`${new Date()} | ${message.author.tag} : ${message.content}`);
         }
+
     }
 }
