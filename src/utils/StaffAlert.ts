@@ -1,4 +1,4 @@
-import getClient from "../main";
+import {getClient} from "../app";
 import config from "../config.json";
 import {Message, MessageEmbed} from "discord.js";
 

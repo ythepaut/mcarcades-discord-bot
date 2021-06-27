@@ -1,8 +1,8 @@
 import {ArgsOf, Guard, On} from "@typeit/discord";
 import config from "../config.json";
-import getToxicity from "../helper/ToxicityAnalysis";
+import getToxicity from "../utils/ToxicityAnalysis";
 import {ConfigGuild} from "../guards/ConfigGuild";
-import {Severity, StaffAlert} from "../helper/StaffAlert";
+import {Severity, StaffAlert} from "../utils/StaffAlert";
 import {NotBot} from "../guards/NotBot";
 import {MessageEmbed} from "discord.js";
 
