@@ -15,7 +15,7 @@ export abstract class Clear {
         const channel = command.channel;
         if (!channel.isText()) return;
 
-        (await channel.messages.fetch()).forEach(message => {
+        (await channel.messages.fetch()).forEach((message) => {
             message.delete();
         });
     }
