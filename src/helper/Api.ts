@@ -4,6 +4,7 @@ import {Server} from "http";
 import {getSaltedHash} from "../utils/Crypto";
 import {getClient, getDatabase} from "../app";
 import Member from "../model/Member";
+import {MessageEmbed} from "discord.js";
 
 export class Api {
 
@@ -55,6 +56,13 @@ export class Api {
 
             if (config.VERBOSE_LEVEL >= 3)
                 console.log("Linked discord account " + tag + " to minecraft UUID " + uuid);
+
+            const dm = await guildMember.createDM();
+            dm.send(new MessageEmbed()
+                .setColor("#2ecc71")
+                .setTitle("Compte minecraft lié !")
+                .setDescription("Votre compte minecraft a bien été lié a votre compte discord.")
+            ).then();
 
             res.status(200).send("User linked successfully.");
         });
