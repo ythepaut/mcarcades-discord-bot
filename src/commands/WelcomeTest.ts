@@ -2,7 +2,7 @@ import {Command, CommandMessage, Guard} from "@typeit/discord";
 import {NotBot} from "../guards/NotBot";
 import {ConfigGuild} from "../guards/ConfigGuild";
 import {HasRoles} from "../guards/HasRoles";
-import getClient from "../main";
+import {getClient} from "../app";
 import config from "../config.json";
 import {Welcome} from "../listeners/Welcome";
 
