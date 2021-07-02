@@ -8,7 +8,6 @@ interface ServerStatus {
     players: number;
 }
 
-
 export class Monitor extends Task {
 
     private static instance: Monitor;
@@ -21,8 +20,8 @@ export class Monitor extends Task {
         super();
         if (!Monitor.instance) {
             Monitor.instance = this;
-            this.interval = interval ? interval : +config.SERVER_MONITOR_API;
-            if (interval > 0)
+            this.interval = interval ? interval : +config.SERVER_MONITOR_INTERVAL;
+            if (this.interval > 0)
                 setInterval(() => this.tick(), this.interval * 1000);
         }
     }
