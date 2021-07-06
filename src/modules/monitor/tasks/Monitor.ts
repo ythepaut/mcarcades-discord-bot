@@ -1,7 +1,7 @@
-import Task from "./Task";
-import config from "../config.json";
+import Task from "../../../model/Task";
+import config from "../../../config.json";
 import fetch from "node-fetch";
-import {Severity, StaffAlert} from "../utils/StaffAlert";
+import {Severity, StaffAlert} from "../../../utils/StaffAlert";
 
 interface ServerStatus {
     online: boolean;

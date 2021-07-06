@@ -3,7 +3,7 @@ import config from "../config.json";
 import {Server} from "http";
 import {getSaltedHash} from "../utils/Crypto";
 import {getClient, getDatabase} from "../app";
-import Member from "../model/Member";
+import Member from "../model/database/Member";
 import {MessageEmbed} from "discord.js";
 
 export class Api {

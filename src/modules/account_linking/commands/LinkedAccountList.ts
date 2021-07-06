@@ -1,10 +1,10 @@
 import {Command, CommandMessage, Guard} from "@typeit/discord";
-import {NotBot} from "../guards/NotBot";
-import {HasRoles} from "../guards/HasRoles";
-import config from "../config.json";
-import {getClient, getDatabase} from "../app";
+import {NotBot} from "../../../guards/NotBot";
+import {HasRoles} from "../../../guards/HasRoles";
+import config from "../../../config.json";
+import {getClient, getDatabase} from "../../../app";
 import {MessageEmbed} from "discord.js";
-import getMinecraftUser from "../utils/MinecraftUserResolver";
+import getMinecraftUser from "../../../utils/MinecraftUserResolver";
 
 export abstract class LinkedAccountList {
 

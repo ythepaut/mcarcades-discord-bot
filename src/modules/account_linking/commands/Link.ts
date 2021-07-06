@@ -1,9 +1,9 @@
 import {Command, CommandMessage, Guard} from "@typeit/discord";
-import {NotBot} from "../guards/NotBot";
-import {HasRoles} from "../guards/HasRoles";
-import config from "../config.json";
+import {NotBot} from "../../../guards/NotBot";
+import {HasRoles} from "../../../guards/HasRoles";
+import config from "../../../config.json";
 import {MessageEmbed} from "discord.js";
-import {getSaltedHash} from "../utils/Crypto";
+import {getSaltedHash} from "../../../utils/Crypto";
 
 export abstract class Link {
 

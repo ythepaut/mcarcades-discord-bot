@@ -1,5 +1,5 @@
 import {ArgsOf, On} from "@typeit/discord";
-import config from "../config.json";
+import config from "../../../config.json";
 
 export abstract class Goodbye {
 

@@ -1,8 +1,8 @@
 import {Command, CommandMessage, Guard} from "@typeit/discord";
-import {NotBot} from "../guards/NotBot";
-import {HasRoles} from "../guards/HasRoles";
-import config from "../config.json";
-import {ConfigGuild} from "../guards/ConfigGuild";
+import {NotBot} from "../../../guards/NotBot";
+import {HasRoles} from "../../../guards/HasRoles";
+import config from "../../../config.json";
+import {ConfigGuild} from "../../../guards/ConfigGuild";
 
 export abstract class Clear {
 

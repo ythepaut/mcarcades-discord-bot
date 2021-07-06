@@ -1,6 +1,6 @@
 import {ArgsOf, On} from "@typeit/discord";
-import {getClient} from "../app";
-import config from "../config.json";
+import {getClient} from "../../../app";
+import config from "../../../config.json";
 import {User} from "discord.js";
 import {createCanvas, loadImage} from "canvas";
 import fs from "fs";
