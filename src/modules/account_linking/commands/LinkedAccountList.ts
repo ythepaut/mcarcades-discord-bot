@@ -1,17 +1,18 @@
-import {Command, CommandMessage, Guard} from "@typeit/discord";
+import {Discord, Guard, Guild, Slash} from "@typeit/discord";
 import {NotBot} from "../../../guards/NotBot";
 import {HasRoles} from "../../../guards/HasRoles";
 import config from "../../../config.json";
 import {getClient, getDatabase} from "../../../app";
-import {MessageEmbed} from "discord.js";
+import {CommandInteraction, MessageEmbed} from "discord.js";
 import getMinecraftUser from "../../../utils/MinecraftUserResolver";
 
+@Discord()
 export abstract class LinkedAccountList {
 
-    @Command("linkedaccountlist")
-    @Guard(NotBot)
-    @Guard(HasRoles([config.ROLES.MODERATOR, config.ROLES.ADMINISTRATOR]))
-    private async processCommand(command: CommandMessage) {
+    //@Guard(NotBot)
+    //@Guard(HasRoles([config.ROLES.MODERATOR, config.ROLES.ADMINISTRATOR]))
+    @Slash("linkedaccountlist")
+    private async processCommand(interaction: CommandInteraction) {
         const client = getClient();
 
         const embed = new MessageEmbed()
@@ -30,6 +31,6 @@ export abstract class LinkedAccountList {
                 false);
         }
 
-        await command.channel.send(embed);
+        await interaction.channel?.send({embeds: [embed]});
     }
 }

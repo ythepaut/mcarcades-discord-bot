@@ -1,6 +1,5 @@
 {
     "VERBOSE_LEVEL": 2,
-    "COMMAND_PREFIX": "!",
 
     "API_PORT": 8000,
 

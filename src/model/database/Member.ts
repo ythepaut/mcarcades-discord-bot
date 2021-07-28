@@ -5,7 +5,7 @@ export default class Member {
     /**
      * Discord User ID
      */
-    private did: string;
+    private readonly did: string;
 
     /**
      * Minecraft Unique User ID
@@ -59,6 +59,6 @@ export default class Member {
 
     public setUUID(uuid: string, database: Db): void {
         this.uuid = uuid;
-        this.updateMember(database);
+        this.updateMember(database).then(_ => {});
     }
 }

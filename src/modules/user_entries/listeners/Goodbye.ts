@@ -1,6 +1,7 @@
-import {ArgsOf, On} from "@typeit/discord";
+import {ArgsOf, Discord, On} from "@typeit/discord";
 import config from "../../../config.json";
 
+@Discord()
 export abstract class Goodbye {
 
     @On("guildMemberRemove")

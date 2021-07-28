@@ -4,7 +4,7 @@ import {Server} from "http";
 import {getSaltedHash} from "../utils/Crypto";
 import {getClient, getDatabase} from "../app";
 import Member from "../model/database/Member";
-import {MessageEmbed} from "discord.js";
+import {MessageEmbed, Snowflake} from "discord.js";
 
 export class Api {
 
@@ -38,7 +38,7 @@ export class Api {
                 return;
             }
 
-            const guildMember = getClient().guilds.cache.get(config.GUILD)?.members.cache.find((member) => member.user.tag === tag);
+            const guildMember = getClient().guilds.cache.get(config.GUILD as Snowflake)?.members.cache.find((member) => member.user.tag === tag);
 
             if (!guildMember) {
                 res.status(400).send("Member is not in the guild.");
@@ -58,11 +58,11 @@ export class Api {
                 console.log("Linked discord account " + tag + " to minecraft UUID " + uuid);
 
             const dm = await guildMember.createDM();
-            dm.send(new MessageEmbed()
+            const embed = new MessageEmbed()
                 .setColor("#2ecc71")
                 .setTitle("Compte minecraft lié !")
-                .setDescription("Votre compte minecraft a bien été lié a votre compte discord.")
-            ).then();
+                .setDescription("Votre compte minecraft a bien été lié a votre compte discord.");
+            dm.send({embeds: [embed]});
 
             res.status(200).send("User linked successfully.");
         });

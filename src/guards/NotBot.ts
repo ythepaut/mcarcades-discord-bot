@@ -1,6 +1,6 @@
-import {GuardFunction} from "@typeit/discord";
+import {ArgsOf, GuardFunction} from "@typeit/discord";
 
-export const NotBot: GuardFunction<"message"> = async ([message], client, next) => {
+export const NotBot: GuardFunction<ArgsOf<"message">> = async ([message], client, next) => {
     if (!message.author.bot) {
         await next();
     }

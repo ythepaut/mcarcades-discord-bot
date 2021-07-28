@@ -2,12 +2,14 @@ import Task from "../../../model/Task";
 import config from "../../../config.json";
 import fetch from "node-fetch";
 import {Severity, StaffAlert} from "../../../utils/StaffAlert";
+import {Discord} from "@typeit/discord";
 
 interface ServerStatus {
     online: boolean;
     players: number;
 }
 
+@Discord()
 export class Monitor extends Task {
 
     private static instance: Monitor;

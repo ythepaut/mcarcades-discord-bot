@@ -1,4 +1,4 @@
-import {ArgsOf, Guard, On} from "@typeit/discord";
+import {ArgsOf, Discord, Guard, On} from "@typeit/discord";
 import config from "../../../config.json";
 import getToxicity from "../ToxicityAnalysis";
 import {ConfigGuild} from "../../../guards/ConfigGuild";
@@ -6,6 +6,7 @@ import {Severity, StaffAlert} from "../../../utils/StaffAlert";
 import {NotBot} from "../../../guards/NotBot";
 import {MessageEmbed} from "discord.js";
 
+@Discord()
 export abstract class Chat {
 
     @On("message")
@@ -41,15 +42,15 @@ export abstract class Chat {
 
                 // TODO Better warning system
                 const dm = await message.author.createDM();
-                await dm.send(new MessageEmbed()
+                const embed = new MessageEmbed()
                     .setColor("#e74c3c")
                     .setTitle("Avertissement")
                     .setDescription(`
                     Vous avez envoyé un message caractérisé comme toxique sur le serveur Discord de McArcades.\n
                     Nous vous prions de garder un comportement correct sur nos serveurs, sans quoi, une sanction sera appliquée sans délai ni avertissement.
                     `)
-                    .setFooter("S'il s'agit d'une erreur, merci de contacter un administrateur.")
-                );
+                    .setFooter("S'il s'agit d'une erreur, merci de contacter un administrateur.");
+                await dm.send({embeds: [embed]});
             } else if (severityScore >= 0.5) {
                 await StaffAlert.triggerAlert(
                     config.ROLES.MODERATOR,

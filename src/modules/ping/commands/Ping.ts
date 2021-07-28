@@ -1,11 +1,12 @@
-import {Command, CommandMessage, Guard} from "@typeit/discord";
-import {NotBot} from "../../../guards/NotBot";
+import {Discord, Guild, Slash} from "@typeit/discord";
+import config from "../../../config.json";
+import {CommandInteraction} from "discord.js";
 
+@Discord()
 export abstract class Ping {
 
-    @Command("ping")
-    @Guard(NotBot)
-    private async processCommand(command: CommandMessage) {
-        await command.reply("Pong !");
+    @Slash("ping")
+    private async processCommand(interaction: CommandInteraction) {
+        await interaction.reply("Pong !");
     }
 }

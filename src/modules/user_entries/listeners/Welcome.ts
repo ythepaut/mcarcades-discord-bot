@@ -1,10 +1,11 @@
-import {ArgsOf, On} from "@typeit/discord";
+import {ArgsOf, Discord, On} from "@typeit/discord";
 import {getClient} from "../../../app";
 import config from "../../../config.json";
-import {User} from "discord.js";
+import {Snowflake, User} from "discord.js";
 import {createCanvas, loadImage} from "canvas";
 import fs from "fs";
 
+@Discord()
 export abstract class Welcome {
 
     static async createWelcomeImage(member: User): Promise<string> {
@@ -72,13 +73,13 @@ export abstract class Welcome {
         const client = getClient();
         if (!client) return;
 
-        const guild = client.guilds.cache.get(config.GUILD);
+        const guild = client.guilds.cache.get(config.GUILD as Snowflake);
         if (!guild) return;
 
-        const channel = guild.channels.cache.get(config.CHANNELS.WELCOME);
+        const channel = guild.channels.cache.get(config.CHANNELS.WELCOME as Snowflake);
         if (!channel || !channel.isText()) return;
 
-        await channel.send("", {files: [await Welcome.createWelcomeImage(member.user)]});
+        await channel.send({files: [await Welcome.createWelcomeImage(member.user)]});
 
         if (config.VERBOSE_LEVEL >= 3)
             console.info(`User ${member.user.tag} joined the guild.`);
