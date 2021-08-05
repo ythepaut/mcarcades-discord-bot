@@ -29,7 +29,7 @@
     "@types/node-fetch": "^2.5.10",
     "canvas": "^2.8.0",
     "crypto-js": "^4.0.0",
-    "discord.js": "github:discordjs/discord.js",
+    "discord.js": "git+https://github.com/discordjs/discord.js.git",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "mongodb": "^3.6.9",

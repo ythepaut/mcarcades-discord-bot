@@ -39,16 +39,19 @@ async function start() {
         slashGuilds: [config.GUILD]
     });
 
+    // Slash commands init
     client.once("ready", async () => {
         await client.clearSlashes();
         await client.clearSlashes(config.GUILD);
         await client.initSlashes();
     });
 
+    // Slash command listener
     client.on("interactionCreate", (interaction: Interaction) => {
         client.executeSlash(interaction);
     });
 
+    //
     await client.login(
         config.BOT_TOKEN,
         `${__dirname}/modules/**/*.ts`
