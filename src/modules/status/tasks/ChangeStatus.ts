@@ -19,7 +19,7 @@ export class ChangeStatus extends Task {
     protected tick(): void {
         getClient().guilds.cache.get(config.GUILD)?.member(getClient().user as ClientUser)?.setNickname("Bob");
         getClient().user?.setActivity(
-            this.statuses[this.index++],
+            this.statuses[this.index++ % this.statuses.length],
             {type: "PLAYING"}
         );
     }
