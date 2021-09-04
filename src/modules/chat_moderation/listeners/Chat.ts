@@ -33,8 +33,8 @@ export abstract class Chat {
                 await StaffAlert.triggerAlert(
                     config.ROLES.MODERATOR,
                     "Message modéré",
-                    `Le message de ${message.author.tag} a été supprimé pour toxicité.
-                    "*${message.content}*"\n
+                    `Le message de ${message.author.tag} a été supprimé pour toxicité.` +
+                    `"*${message.content}*"\n
                     ${toxicityDetails.join(", ")}`,
                     Severity.MEDIUM,
                     false);
