@@ -17,7 +17,7 @@ export abstract class Link {
             .setColor("#9b59b6")
             .setTitle("Lier le compte minecraft")
             .setDescription(
-                `Pour lier votre compte minecraft avec votre compte discord, connectez-vous sur le serveur et tapez la commande :\n` +
+                "Pour lier votre compte minecraft avec votre compte discord, connectez-vous sur le serveur et tapez la commande :\n" +
                 `\`/discord ${command.author.tag} ${getSaltedHash(command.author.tag).substring(0, 8)}\``)
             .setFooter("Récompense : 5000 Jetons et 5000 XP")
         );

@@ -30,7 +30,7 @@ export class Api {
         this.expressApp.get("/link-account/:tag/:hash/:uuid", async (req: Request, res: Response) => {
 
             const tag = req.params.tag.replace("@", "#"),
-                hash = req.params.hash.replace("-", "/").replace("_", "+"),
+                hash = req.params.hash,
                 uuid = req.params.uuid;
 
             if (getSaltedHash(tag).substring(0, 8) != hash) {
