@@ -28,8 +28,6 @@ async function getToxicity(content: String): Promise<object> {
             }
         );
     } catch (err) {
-        if (config.VERBOSE_LEVEL >= 5)
-            console.error(err.toString());
     }
 
 
