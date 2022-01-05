@@ -16,7 +16,8 @@
     "GUILD": "REPLACE ME",
     "CHANNELS": {
         "WELCOME": "REPLACE ME",
-        "ALERTS": "REPLACE ME"
+        "ALERTS": "REPLACE ME",
+        "PLAYER_COUNT": "REPLACE ME"
     },
     "ROLES": {
         "ADMINISTRATOR": "REPLACE ME",

@@ -2,6 +2,7 @@ import Task from "../../../model/Task";
 import config from "../../../config.json";
 import fetch from "node-fetch";
 import {Severity, StaffAlert} from "../../../utils/StaffAlert";
+import {getClient} from "../../../app";
 
 interface ServerStatus {
     online: boolean;
@@ -40,6 +41,26 @@ export class Monitor extends Task {
             online: rawJSON.online,
             players: rawJSON.online === true ? rawJSON.players.online : 0
         };
+    }
+
+    /**
+     * Updates the player count on the PLAYER_COUNT channel
+     * @private
+     */
+    private async updatePlayerCount(): Promise<void> {
+        const client = getClient();
+        if (!client) return;
+
+        const guild = client.guilds.cache.get(config.GUILD);
+        if (!guild) return;
+
+        const channel = guild.channels.cache.get(config.CHANNELS.PLAYER_COUNT);
+        if (!channel || channel.isText()) return;
+
+        let channelName = "👥 Aucun joueur connecté";
+        if (this.lastStatus?.players !== undefined && this.lastStatus?.players > 0)
+            channelName = "👥 " + this.lastStatus?.players + " joueur" + (this.lastStatus?.players > 1 ? "s" : "") + " connecté" + (this.lastStatus?.players > 1 ? "s" : "");
+        await channel.setName(channelName);
     }
 
     /**
@@ -84,5 +105,7 @@ export class Monitor extends Task {
         // TODO: RAM usage verification
 
         this.lastStatus = status;
+
+        await this.updatePlayerCount();
     }
 }
