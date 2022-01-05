@@ -53,6 +53,11 @@ export class Api {
             }
 
             member.setUUID(uuid, getDatabase());
+            const role = getClient().guilds.cache.get(config.GUILD)?.roles.cache.find((role) => role.id === config.ROLES.LINKED)
+            if (role)
+                await guildMember.roles.add(role)
+            else
+                console.error("Could not assign LINKED role to " + tag)
 
             if (config.VERBOSE_LEVEL >= 3)
                 console.log("Linked discord account " + tag + " to minecraft UUID " + uuid);

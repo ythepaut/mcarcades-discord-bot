@@ -9,7 +9,6 @@ export abstract class Link {
 
     @Command("link")
     @Guard(NotBot)
-    @Guard(HasRoles([config.ROLES.PLAYER, config.ROLES.ADMINISTRATOR]))
     private async processCommand(command: CommandMessage) {
 
         const dm = await command.author.createDM();
