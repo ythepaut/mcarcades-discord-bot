@@ -22,6 +22,7 @@
     "ROLES": {
         "ADMINISTRATOR": "REPLACE ME",
         "MODERATOR": "REPLACE ME",
-        "LINKED": "REPLACE ME"
+        "LINKED": "REPLACE ME",
+        "PLAYER": "REPLACE ME"
     }
 }

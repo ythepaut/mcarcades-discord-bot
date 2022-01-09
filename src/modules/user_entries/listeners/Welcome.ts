@@ -78,7 +78,13 @@ export abstract class Welcome {
         const channel = guild.channels.cache.get(config.CHANNELS.WELCOME);
         if (!channel || !channel.isText()) return;
 
+        // Sending welcome image
         await channel.send("", {files: [await Welcome.createWelcomeImage(member.user)]});
+
+        // Assign player role
+        const role = getClient().guilds.cache.get(config.GUILD)?.roles.cache.find((role) => role.id === config.ROLES.PLAYER)
+        if (role)
+            await member.roles.add(role)
 
         if (config.VERBOSE_LEVEL >= 3)
             console.info(`User ${member.user.tag} joined the guild.`);
