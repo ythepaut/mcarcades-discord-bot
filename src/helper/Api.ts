@@ -66,7 +66,7 @@ export class Api {
             dm.send(new MessageEmbed()
                 .setColor("#2ecc71")
                 .setTitle("Compte minecraft lié !")
-                .setDescription("Votre compte minecraft a bien été lié a votre compte discord.")
+                .setDescription("Votre compte minecraft a bien été lié à votre compte discord.")
             ).then();
 
             res.status(200).send("User linked successfully.");
