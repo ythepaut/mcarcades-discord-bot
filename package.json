@@ -27,7 +27,7 @@
   "dependencies": {
     "@typeit/discord": "^4.0.10",
     "@types/node-fetch": "^2.5.10",
-    "canvas": "^2.8.0",
+    "canvas": "^2.9.0",
     "crypto-js": "^4.0.0",
     "discord.js": "^12.5.3",
     "express": "^4.17.1",
