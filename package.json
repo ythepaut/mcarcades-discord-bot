@@ -33,7 +33,7 @@
     "express": "^4.17.3",
     "fs": "^0.0.2",
     "mongodb": "^3.6.9",
-    "node-fetch": "^3.2.1",
+    "node-fetch": "^3.2.2",
     "perspective-api-client": "^3.1.0",
     "tslib": "^2.3.0"
   }
