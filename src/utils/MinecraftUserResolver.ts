@@ -8,7 +8,7 @@ export interface MinecraftUser {
 async function getMinecraftUser(uuid: string): Promise<MinecraftUser> {
 
     const response = await fetch("https://api.mojang.com/user/profiles/" + uuid + "/names");
-    const json = await response.json();
+    const json: any[] = await response.json() as any[];
 
     return {
         uuid: uuid,
